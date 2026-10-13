@@ -1,0 +1,27 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+{% block content %}
+
+<div class="admin-dashboard-container">
+    <div class="admin-card dark-card">
+        <h2 class="section-title">Edit Event</h2>
+        <form method="POST" class="admin-form">
+            <label>Event Name</label>
+            <input type="text" name="name" value="{{ event.name }}" required>
+            <label>Base Price (£)</label>
+            <input type="number" step="0.01" name="base_total_price" value="{{ event.base_total_price }}" required>
+            <label>Start Date</label>
+            <input type="date" name="start_date" value="{{ event.start_date }}" required>
+            <label>End Date</label>
+            <input type="date" name="end_date" value="{{ event.end_date }}" required>
+            <label>Last Booking Date</label>
+            <input type="date" name="last_booking_date" value="{{ event.last_booking_date }}" required>
+            <label>Conditions</label>
+            <textarea name="conditions">{{ event.conditions }}</textarea>
+            <button type="submit" class="btn">Save Changes</button>
+            <a href="{{ url_for('admin_bp.dashboard') }}" class="btn danger">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

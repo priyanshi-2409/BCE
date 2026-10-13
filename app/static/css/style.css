@@ -1,0 +1,704 @@
+/*Student_ID_25017334_Name_Priyanshi_Jadeja*/
+
+/* GLOBAL */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@300;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+/*  BODY  */
+
+body {
+    background-color: #292929;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/*  NAVBAR / HEADER */
+
+header.view1 {
+    background-color: #292929;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.logo-title h1 {
+    color: #ff9800;
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 2rem;
+}
+.navbar {
+    display: flex;
+    gap: 20px;
+}
+.navbar a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+}
+.navbar a:hover {
+    color: #ff9800;
+}
+
+/* Mobile Navbar */
+@media (max-width: 600px) {
+    header.view1 {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .navbar a {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+}
+
+/* MAIN CONTAINER */
+
+.main {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 40px 0;
+}
+
+/*HERO IMAGE */
+
+.fakeimg {
+    background: url('../images/website_image2.png') no-repeat center center / cover;
+    width: 100%;
+    min-height: 450px; 
+    border-radius: 8px;
+    margin: 20px auto;
+    padding: 60px 20px; 
+    text-align: center;
+    color: #ffffff;
+    position: relative; 
+    overflow: hidden;
+
+}
+
+/* SEARCH FORM */
+
+.horizontal-form {
+    display: flex;
+    justify-content: center;
+    gap: 45px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    background: rgba(54, 53, 53, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+.form-group input,
+.form-group select {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    min-width: 150px;
+}
+.horizontal-form button {
+    padding: 10px 20px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.search-btn {
+    height: 40px;
+    padding: 0 20px;
+    background: #ff9800;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.search-btn:hover {
+    background: #e68a00;
+}
+
+/* TABLET FORM FIX */
+
+@media (max-width: 900px) {
+    .horizontal-form {
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .horizontal-form .form-group {
+        width: 45%;
+        min-width: 180px;
+    }
+}
+
+/* MOBILE FORM FIX */
+
+@media (max-width: 600px) {
+    .horizontal-form {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .horizontal-form .form-group {
+        width: 100%;
+    }
+
+    .horizontal-form input,
+    .horizontal-form select,
+    .horizontal-form button {
+        width: 100%;
+    }
+}
+
+/* INFO SECTION */
+
+.info-section {
+    background: #e09119;
+    color: #fcfbfb;
+    padding: 20px 30px;
+    margin: 20px auto;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    max-width: 800px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+/* UPCOMING EVENTS */
+
+.upcoming-events {
+    background-color: #e09119;
+    padding: 40px 20px;
+    margin: 40px 20px;
+    border-radius: 8px;
+}
+.upcoming-events h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+.event-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.event {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 45%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* TABLET EVENTS */
+
+@media (max-width: 900px) {
+    .event-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .event {
+        width: 100%;
+    }
+}
+
+/* MOBILE EVENTS */
+
+@media (max-width: 600px) {
+    .event-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .event {
+        width: 100%;
+    }
+}
+
+/* TABLE WRAPPER */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* CARD */
+
+.dark-card,
+.card-dark,
+.booking-card,
+.receipt-card,
+.event-card,
+.admin-card {
+    background-color: #1a1a1a;
+    color: #ffffff !important;
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+}
+
+/*  BUTTONS */
+
+.btn {
+    background: #ff9800;
+    color: white;
+    padding: 10px 8px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn:hover {
+    background: #e68a00;
+}
+.btn.danger {
+    background: #d9534f;
+    color: white;
+}
+.btn.danger:hover {
+    background: #c9302c;
+}
+.btn.small {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+}
+
+/* PAYMENT FORM*/
+
+.payment-container {
+    max-width: 420px;
+    margin: 20px auto;
+    background: #1a1a1a;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    color: #fff;
+}
+.payment-field input {
+    background: #2a2a2a;
+    border: 1px solid #555;
+    color: #fff;
+}
+
+/* FOOTER */
+
+footer {
+    background-color: #292929;
+    color: #f0f0f0;
+    padding: 10px 5px;
+    text-align: center;
+    margin-top: 20px;
+    font-size: medium;
+}
+footer a {
+    color: #ff9800;
+    text-decoration: none;
+    font-weight: bold;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+.footer-social img {
+    width: 24px;
+    height: 24px;
+}
+.tagline {
+    margin-top: 15px;
+    font-style: italic;
+    color: #ccc;
+    font-size: 14px;
+}
+
+/* GO TO TOP BUTTON */
+
+#topBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff9800;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 6%;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 999;
+    border: none;
+    text-decoration: none;
+    scroll-behavior: smooth;
+}
+#topBtn:hover {
+    background: #dbca08;
+}
+
+/* FLASH MESSAGES */
+
+.flash-message {
+    padding: 12px 18px;
+    margin: 15px auto;
+    border-radius: 6px;
+    max-width: 900px;
+    font-weight: 600;
+    text-align: center;
+}
+.flash-message.success { background:#cd8125; color:white; }
+.flash-message.error { background:#d9534f; color:white; }
+.flash-message.info { background:#cd8125; color:white; }
+.flash-message.warning,
+.flash-message.cancel_warning { background:#cd8125; color:black; }
+
+/* PAGE-SPECIFIC CONTAINERS */
+
+.booking-container,
+.details-container,
+.confirm-container {
+    margin: 40px auto;
+    max-width: 900px;
+}
+.admin-dashboard-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 15px;
+}
+.admin-card {
+    padding: 30px 35px;
+    border-radius: 10px;
+}
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.admin-form label {
+    font-weight: bold;
+    margin-bottom: 4px;
+    font-size: 1rem;
+}
+.admin-form input,
+.admin-form select,
+.admin-form textarea {
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background: #2a2a2a;
+    color: #fff;
+    font-size: 1rem;
+}
+.admin-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+.admin-form .btn {
+    width: fit-content;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+.admin-form .btn.danger {
+    margin-left: 10px;
+}
+
+/* BUTTON ROW */
+
+.admin-form button,
+.admin-form a.btn {
+    display: inline-block;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+    .admin-card {
+        padding: 20px;
+    }
+
+    .admin-form {
+        gap: 15px;
+    }
+
+    .admin-form .btn,
+    .admin-form .btn.danger {
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+    }
+}
+
+/* Upcoming Events Section */
+
+.upcoming-events {
+    margin: 40px auto;
+    text-align: center;
+    max-width: 900px;
+}
+
+/* Grid layout */
+
+.upcoming-events-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* HORIZONTAL CARD */
+
+.upcoming-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 12px;
+    width: 100%;
+    max-width: 420px; /* compact like real website */
+    gap: 12px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.4);
+}
+
+/* Thumbnail image */
+
+.upcoming-card img {
+    width: 110px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Text container */
+
+.upcoming-card .event-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: left;
+}
+
+/* Title */
+
+.upcoming-card .event-info h3 {
+    color: #fff;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Venue + date + price */
+
+.upcoming-card .venue,
+.upcoming-card .date,
+.upcoming-card .price {
+    color: #ccc;
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+/* View details link */
+
+.upcoming-card .details-link {
+    margin-top: 4px;
+    font-size: 0.8rem;
+    color: #ffb347;
+    text-decoration: underline;
+}
+
+/* RESPONSIVE BREAKPOINTS  */
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .upcoming-card {
+        max-width: 90%;
+        flex-direction: column; /* stack image + text */
+        text-align: center;
+    }
+
+    .upcoming-card img {
+        width: 100%;
+        height: 120px;
+    }
+
+    .upcoming-card .event-info {
+        text-align: center;
+    }
+}
+
+/* Tablet */
+
+@media (min-width: 600px) and (max-width: 900px) {
+    .upcoming-card {
+        max-width: 45%;
+    }
+}
+
+/* Desktop */
+
+@media (min-width: 900px) {
+    .upcoming-card {
+        max-width: 420px;
+    }
+}
+
+/* select days and confirm*/
+
+.booking-container,
+.confirm-container {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    margin: 30px auto;
+    box-shadow: 0 0 12px rgba(255,255,255,0.08);
+    color: #fff;
+}
+
+/* Page titles */
+
+.page-title {
+    color: #ff9800;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Event name on confirm page */
+
+.event-name {
+    color: #ff9800;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+/* Table wrapper */
+
+.table-wrapper {
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+/* Tables */
+
+.days-table,
+.confirm-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #222;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Table headers */
+
+.days-table th,
+.confirm-table th {
+    background: #2a2a2a;
+    color: #ff9800;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Table cells */
+
+.days-table td,
+.confirm-table td {
+    padding: 12px;
+    border-bottom: 1px solid #333;
+}
+
+/* Row striping */
+
+.days-table tr:nth-child(even),
+.confirm-table tr:nth-child(even) {
+    background: #1f1f1f;
+}
+
+/* Sold out text */
+
+.sold-out {
+    color: #d9534f;
+    font-weight: bold;
+}
+
+/* Quantity input */
+
+.qty-input {
+    width: 70px;
+    padding: 6px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 4px;
+}
+
+/* Summary section  */
+
+.confirm-summary {
+    margin-top: 20px;
+    background: #222;
+    padding: 15px;
+    border-radius: 8px;
+}
+.confirm-summary p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+.final-total {
+    font-size: 18px;
+    color: #ff9800;
+    font-weight: bold;
+}
+
+/* Buttons */
+
+.confirm-btn,
+.btn {
+    background: #ff9800;
+    color: #000;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.confirm-btn:hover,
+.btn:hover {
+    background: #e68a00;
+}

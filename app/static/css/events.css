@@ -1,0 +1,76 @@
+/*Student_ID_25017334_Name_Priyanshi_Jadeja*/
+
+/* EVENTS PAGE  */
+
+/* Main table styling */
+
+.event-table {
+  width: 90%;
+  margin: 30px auto;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', sans-serif;
+  background: rgb(54, 53, 53);
+  color: #f0f0f0;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.event-table thead {
+  background: #ff9800;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.event-table th,
+.event-table td {
+  padding: 15px 20px;
+  text-align: left;
+}
+.event-table tbody tr:nth-child(even) {
+  background-color: #2a2a2a;
+}
+.event-table tbody tr:hover {
+  background-color: #333;
+  transition: background 0.3s ease;
+}
+
+/* Wrapper for horizontal scroll on small screens */
+
+.table-wrapper {
+  overflow-x: auto;
+}
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Responsive: Mobile */
+
+@media (max-width: 600px) {
+  .event-table th,
+  .event-table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+/* Responsive: Tablet */
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .event-table th,
+  .event-table td {
+    padding: 12px;
+    font-size: 15px;
+  }
+}
+
+/* Responsive: Desktop */
+
+@media (min-width: 1025px) {
+  .event-table th,
+  .event-table td {
+    padding: 15px 20px;
+    font-size: 16px;
+  }
+}

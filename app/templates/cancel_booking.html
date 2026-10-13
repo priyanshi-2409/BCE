@@ -1,0 +1,99 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+{% block title %}Cancel Booking{% endblock %}
+{% block body_class %}cancel-page{% endblock %}
+
+{% block content %}
+
+<div class="cancel-container dark-card">
+
+    <h1 class="page-title">Cancel Booking</h1>
+
+    <div class="cancel-info">
+        <p><strong>Booking ID:</strong> {{ booking.booking_id }}</p>
+        <p><strong>Event:</strong> {{ booking.name }}</p>
+        <p><strong>Event Date:</strong> {{ booking.first_date }}</p>
+        <p><strong>Days Left:</strong> {{ days_left }}</p>
+        <p><strong>Refund Percentage:</strong> {{ refund_percent }}%</p>
+        <p class="refund-amount"><strong>Refund Amount:</strong> £{{ refund }}</p>
+    </div>
+
+    <h2 class="section-title">Enter Refund Details</h2>
+
+    <form method="POST" class="refund-form">
+
+        <div class="refund-field">
+            <label>Card Number</label>
+            <input type="text" name="card_number" required>
+        </div>
+
+        <div class="refund-field">
+            <label>Expiry Date (MM/YY)</label>
+            <input type="text" name="expiry" required>
+        </div>
+
+        <div class="refund-field">
+            <label>CVC</label>
+            <input type="password" name="cvc" required>
+        </div>
+
+        <button class="btn danger-btn">Process Refund & Cancel</button>
+    </form>
+
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.cancel-container {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 900px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+}
+.page-title {
+    color: #ff9800;
+    margin-bottom: 20px;
+}
+.cancel-info p {
+    color: #fff;
+    margin: 6px 0;
+}
+.refund-amount {
+    font-size: 20px;
+    color: #ff9800;
+    margin-top: 10px;
+}
+.section-title {
+    margin-top: 25px;
+    color: #ffa733;
+}
+.refund-field {
+    margin-bottom: 15px;
+}
+.refund-field input {
+    width: 100%;
+    padding: 10px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: white;
+}
+.danger-btn {
+    background: #d9534f;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+.danger-btn:hover {
+    background: #b32b2b;
+}
+</style>
+{% endblock %}

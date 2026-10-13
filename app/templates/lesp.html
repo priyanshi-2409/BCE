@@ -1,0 +1,68 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/lesp.css') }}">
+{% endblock %}
+
+{% block title %}LESP - Legal, Ethical, Social, Professional{% endblock %}
+{% block body_class %}lesp-page{% endblock %}
+
+{% block content %}
+
+<div class="lesp-container">
+
+  <h1>Legal, Ethical, Social & Professional Considerations</h1>
+  <p>
+    This page outlines the key responsibilities involved in developing and maintaining the Bristol Community Events website.
+    It demonstrates compliance with legal standards, ethical behaviour, social responsibility, and professional practice.
+  </p>
+
+  <!-- LEGAL -->
+  <h2 class="section-title">Legal Responsibilities</h2>
+  <div class="lesp-box">
+    <ul>
+      <li><strong>GDPR Compliance:</strong> User data (emails, passwords, bookings) must be stored securely and only used for intended purposes.</li>
+      <li><strong>Data Protection:</strong> Passwords must be hashed; sensitive data must not be exposed or shared.</li>
+      <li><strong>Cookie & Privacy Policies:</strong> Users must be informed about how their data is collected and processed.</li>
+      <li><strong>Copyright:</strong> All images, text, and media must be used legally with permission or proper licensing.</li>
+      <li><strong>Accessibility Law:</strong> The site must follow WCAG guidelines to support users with disabilities.</li>
+    </ul>
+  </div>
+
+  <!-- ETHICAL -->
+  <h2 class="section-title">Ethical Responsibilities</h2>
+  <div class="lesp-box">
+    <ul>
+      <li><strong>Transparency:</strong> Users should clearly understand how their data is used.</li>
+      <li><strong>Fair Use of Data:</strong> No selling, misusing, or sharing user information.</li>
+      <li><strong>Honest Communication:</strong> Event details, pricing, and discounts must be accurate and not misleading.</li>
+      <li><strong>Security:</strong> Ethical responsibility to protect users from data breaches and fraud.</li>
+      <li><strong>Inclusivity:</strong> Ensuring the platform is welcoming and accessible to all users.</li>
+    </ul>
+  </div>
+
+  <!-- SOCIAL -->
+  <h2 class="section-title">Social Responsibilities</h2>
+  <div class="lesp-box">
+    <ul>
+      <li><strong>Community Support:</strong> Promoting local events strengthens Bristol's cultural and social environment.</li>
+      <li><strong>Accessibility:</strong> Providing equal access for users with visual, hearing, or mobility impairments.</li>
+      <li><strong>Affordability:</strong> Transparent pricing and fair discounts help ensure events are accessible to everyone.</li>
+      <li><strong>Non-Discrimination:</strong> Ensuring the platform does not exclude or disadvantage any group.</li>
+    </ul>
+  </div>
+
+  <!-- PROFESSIONAL -->
+  <h2 class="section-title">Professional Responsibilities</h2>
+  <div class="lesp-box">
+    <ul>
+      <li><strong>Code Quality:</strong> Writing clean, maintainable, and well-documented code.</li>
+      <li><strong>Testing:</strong> Ensuring the website functions correctly and securely before deployment.</li>
+      <li><strong>Security Best Practices:</strong> Using hashed passwords, secure sessions, and validated inputs.</li>
+      <li><strong>Reliability:</strong> Ensuring the system is stable, available, and trustworthy for users.</li>
+      <li><strong>Continuous Improvement:</strong> Updating features, fixing bugs, and improving user experience.</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

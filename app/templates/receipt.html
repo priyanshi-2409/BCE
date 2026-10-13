@@ -1,0 +1,175 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+{% block title %}Receipt{% endblock %}
+{% block body_class %}receipt-page{% endblock %}
+
+{% block content %}
+
+<div class="receipt-container dark-card">
+
+    <h1 class="page-title">Booking Receipt</h1>
+
+    <div class="receipt-header">
+        <p><strong>Booking ID:</strong> {{ booking.booking_id }}</p>
+        <p><strong>Booked On:</strong> {{ booking.booking_ts }}</p>
+        <p><strong>Email:</strong> {{ booking.email }}</p>
+        <p><strong>Status:</strong> {{ booking.status }}</p>
+        <p><strong>Event:</strong> {{ booking.event_name }}</p>
+        <p><strong>Location:</strong> {{ booking.location_name }}</p>
+    </div>
+
+    <h2 class="section-title">Booked Days</h2>
+    <div class="table-wrapper">
+    <table class="receipt-table">
+        <tr>
+            <th>Date</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Line Total</th>
+        </tr>
+
+        {% for line in lines %}
+        <tr>
+            <td>{{ line.occur_date }}</td>
+            <td>{{ line.start_time or "-" }}</td>
+            <td>{{ line.end_time or "-" }}</td>
+            <td>{{ line.qty }}</td>
+            <td>£{{ "%.2f"|format(line.unit_price) }}</td>
+            <td>£{{ "%.2f"|format(line.line_total) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+    <div class="totals-box">
+        <p>Total Before Discounts: <strong>£{{ "%.2f"|format(booking.total_before_discounts) }}</strong></p>
+        <p>Discount Applied: <strong>- £{{ "%.2f"|format(booking.total_discount) }}</strong></p>
+        <p class="final-total">Final Paid: <strong>£{{ "%.2f"|format(booking.total_after_discounts) }}</strong></p>
+    </div>
+
+    <div class="receipt-actions">
+        <button class="btn print-btn" onclick="window.print()">Print Receipt</button>
+
+        <a href="{{ url_for('booking_bp.dashboard') }}" class="btn back-btn">
+            Back to Dashboard
+        </a>
+
+        <a href="{{ url_for('booking_bp.download_receipt', booking_id=booking.booking_id) }}" 
+           class="btn download-btn">
+            Download Receipt
+        </a>
+    </div>
+</div>
+{% endblock %}
+{% block extra_css %}
+<style>
+.receipt-container {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 25px auto;
+    width: 90%;
+    max-width: 900px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+}
+.page-title {
+    color: #ff9800;
+}
+.section-title {
+    margin-top: 25px;
+    color: #ffa733;
+}
+.receipt-header p {
+    margin: 5px 0;
+    color: #fff;
+}
+
+/* Table */
+
+.receipt-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #222;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.receipt-table th {
+    background: #2a2a2a;
+    padding: 12px;
+    color: #ff9800;
+    text-align: left;
+}
+.receipt-table td {
+    padding: 12px;
+    border-bottom: 1px solid #333;
+    color: #fff;
+}
+.receipt-table tr:nth-child(even) {
+    background: #1f1f1f;
+}
+
+/* Totals */
+
+.totals-box {
+    margin-top: 25px;
+    background: #222;
+    padding: 20px;
+    border-radius: 8px;
+    color: #fff;
+}
+.final-total {
+    font-size: 20px;
+    color: #ff9800;
+}
+
+/* Buttons */
+
+.receipt-actions {
+    margin-top: 20px;
+}
+.print-btn, .back-btn, .download-btn {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
+}
+.print-btn {
+    background: #ffa733;
+    color: #000;
+}
+.back-btn {
+    background: #555;
+    color: #fff;
+}
+.download-btn {
+    background: #ff9800;
+    color: #000;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+    .receipt-container {
+        padding: 20px;
+        width: 95%;
+    }
+
+    .receipt-table th,
+    .receipt-table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .print-btn, .back-btn, .download-btn {
+        width: 100%;
+        text-align: center;
+        margin-right: 0;
+    }
+}
+</style>
+{% endblock %}

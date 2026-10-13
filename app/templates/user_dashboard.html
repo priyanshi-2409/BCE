@@ -1,0 +1,157 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user_dashboard.css') }}">
+{% endblock %}
+
+{% block title %}User Dashboard{% endblock %}
+{% block body_class %}user-dashboard-page{% endblock %}
+
+{% block content %}
+
+<!-- WELCOME CARD -->
+<div class="card dark-card">
+    <h2>Welcome Back!</h2>
+    <p>You are logged in to your dashboard. From here you can book events, view your bookings, and update your password.</p>
+</div>
+{% if offers %}
+<div class="card dark-card" style="border-left: 4px solid #ff9800;">
+    <h2>Good News!</h2>
+    <p>A spot has opened for an event you joined the waiting list for.</p>
+
+    {% for o in offers %}
+        <div class="offer-box" style="margin-top: 10px;">
+            <p><strong>{{ o.event_name }}</strong> — {{ o.occur_date }}</p>
+            <a href="{{ url_for('booking_bp.waiting_offer', waiting_id=o.waiting_id) }}" class="btn">
+                Book Now
+            </a>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- BOOK EVENT CARD -->
+<div class="card dark-card">
+    <h2>Book an Event</h2>
+
+    <button class="btn" id="showBookingBtn">Book Event</button>
+
+    <div id="bookingForm" class="booking-form-hidden">
+        <form onsubmit="event.preventDefault(); goToSelectDays();">
+
+            <label>Select Event</label>
+            <select id="dashEvent" required>
+                <option value="">Select Event</option>
+                {% for e in all_events %}
+                    <option value="{{ e.event_id }}">{{ e.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Number of Tickets</label>
+            <input type="number" id="dashQty" min="1" value="1" required>
+            <label class="student-check">
+                <input type="checkbox" name="is_student" id="is_student">
+                <span>I am a student (10% discount)</span>
+            </label>
+
+            <button class="btn">Confirm Booking</button>
+        </form>
+    </div>
+</div>
+
+<!-- BOOKINGS CARD -->
+<div class="card dark-card">
+    <h2>Your Bookings</h2>
+
+    {% if bookings %}
+        {% for b in bookings %}
+        <div class="booking-card dark-card">
+
+            <h3>{{ b.event_name }}</h3>
+
+            <p><strong>Booking ID:</strong> {{ b.booking_id }}</p>
+            <p><strong>Status:</strong> {{ b.status }}</p>
+            <p><strong>Total Paid:</strong> £{{ b.total_price }}</p>
+            <p><strong>Booked On:</strong> {{ b.booking_ts }}</p>
+
+            <h4>Booked Days</h4>
+
+            <div class="table-wrapper">
+                <table class="details-table">
+                    <tr>
+                        <th>Date</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Qty</th>
+                        <th>Line Total</th>
+                    </tr>
+
+                    {% for d in booking_days[b.booking_id] %}
+                    <tr>
+                        <td>{{ d.occur_date }}</td>
+                        <td>{{ d.start_time or "-" }}</td>
+                        <td>{{ d.end_time or "-" }}</td>
+                        <td>{{ d.qty }}</td>
+                        <td>£{{ "%.2f"|format(d.qty * d.unit_price) }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+            <div class="dashboard-booking-actions">
+                <a href="{{ url_for('booking_bp.receipt', booking_id=b.booking_id) }}" class="btn">
+                    Receipt
+                </a>
+                {% if b.status == "PENDING_PAYMENT" %}
+                <a href="{{ url_for('booking_bp.payment_page', booking_id=b.booking_id) }}" 
+                   class="btn btn-warning">
+                    Pay Now
+                </a>
+                {% endif %}
+                {% if b.status != "CANCELLED" %}
+                <a href="{{ url_for('booking_bp.cancel_booking', booking_id=b.booking_id) }}" class="btn cancel">
+                    Cancel Booking
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>You have no bookings yet.</p>
+    {% endif %}
+</div>
+
+<!-- UPDATE PASSWORD -->
+<div class="card dark-card">
+    <h2>Update Password</h2>
+
+    <form method="POST" action="{{ url_for('auth_bp.update_password') }}">
+        <label>Old Password</label>
+        <input type="password" name="old_password" required>
+    
+        <label>New Password</label>
+        <input type="password" name="new_password" required>
+    
+        <button type="submit" class="btn">Update</button>
+    </form>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+document.getElementById("showBookingBtn").addEventListener("click", function() {
+    const form = document.getElementById("bookingForm");
+    form.style.display = form.style.display === "none" ? "block" : "none";
+});
+</script>
+
+<script>
+function goToSelectDays() {
+    const eventId = document.getElementById("dashEvent").value;
+    if (!eventId) return;
+
+    const url = "{{ url_for('booking_bp.select_days', event_id=0) }}".replace("0", eventId);
+    window.location.href = url;
+}
+</script>
+{% endblock %}

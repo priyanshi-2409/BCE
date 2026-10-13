@@ -1,0 +1,38 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block title %}Login{% endblock %}
+{% block body_class %}login-page{% endblock %}
+
+{% block content %}
+
+<div class="login-wrapper">
+
+  <form method="POST" action="{{ url_for('auth_bp.login') }}" class="login-form">
+
+    <h2>Login</h2>
+
+    <div class="login-input-field">
+        <input type="email" name="email" required>
+        <label>Enter your e-mail</label>
+    </div>
+
+    <div class="login-input-field">
+        <input type="password" name="password" required>
+        <label>Enter your password</label>
+    </div>
+
+    <button type="submit" class="login-btn">Log In</button>
+
+    <div class="login-register">
+        <p>Don't have an account? <a href="{{ url_for('auth_bp.register') }}">Register</a></p>
+    </div>
+
+  </form>
+
+</div>
+{% endblock %}

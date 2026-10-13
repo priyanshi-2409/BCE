@@ -1,0 +1,446 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
+{% block title %}Admin Dashboard{% endblock %}
+{% block body_class %}admin-dashboard-page{% endblock %}
+
+{% block content %}
+
+<div class="admin-dashboard-container">
+
+    <!-- HEADER -->
+    <div class="admin-header dark-card">
+        <h1>Admin Dashboard</h1>
+        <p>Manage events, bookings, locations, categories, and view sales performance.</p>
+    </div>
+
+    <!-- EVENT MANAGEMENT -->
+    <div class="collapse-header">Event Management <i>>></i></div>
+    <div class="collapse-content">
+        <div class="admin-card dark-card">
+
+            <h2 class="section-title">Event Management</h2>
+
+            <!-- ADD EVENT -->
+            <h3 class="sub-title">Add Event</h3>
+            <form method="POST" action="{{ url_for('admin_bp.add_event') }}" class="admin-form">
+
+                <label>Event Name</label>
+                <input type="text" name="name" required>
+
+                <label>Description</label>
+                <textarea name="description"></textarea>
+
+                <label>Conditions</label>
+                <textarea name="conditions"></textarea>
+
+                <label>Location</label>
+                <select name="location_id" required>
+                    {% for l in locations %}
+                        <option value="{{ l.location_id }}">{{ l.name }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Start Date</label>
+                <input type="date" name="start_date" required>
+
+                <label>End Date</label>
+                <input type="date" name="end_date" required>
+
+                <label>Last Booking Date</label>
+                <input type="date" name="last_booking_date" required>
+
+                <label>Base Price</label>
+                <input type="number" step="0.01" name="base_total_price" required>
+
+                <label>Categories</label>
+                <select name="category_ids" multiple required>
+                    {% for c in categories %}
+                        <option value="{{ c.category_id }}">{{ c.name }}</option>
+                    {% endfor %}
+                </select>
+
+                <button class="btn">Add Event</button>
+            </form>
+
+            <!-- EXISTING EVENTS -->
+            <h3 class="sub-title">Existing Events</h3>
+
+            <div class="table-wrapper">
+                <table class="admin-table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Active</th>
+                        <th>Actions</th>
+                    </tr>
+
+                    {% for e in events %}
+                    <tr>
+                        <td>{{ e.event_id }}</td>
+                        <td>{{ e.name }}</td>
+                        <td>{{ e.location_name }}</td>
+                        <td>{{ "Yes" if e.is_active else "No" }}</td>
+                        <td>
+                            <a class="btn small" href="{{ url_for('admin_bp.edit_event', event_id=e.event_id) }}">Edit</a>
+                            <a class="btn small danger"
+                               onclick="return confirm('Are you sure you want to delete this event?');"
+                               href="{{ url_for('admin_bp.delete_event', event_id=e.event_id) }}">
+                               Delete
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- OCCURRENCE MANAGEMENT -->
+    <div class="collapse-header">Occurrence Management <i>>></i></div>
+    <div class="collapse-content">
+        <div class="admin-card dark-card">
+
+            <h2 class="section-title">Event Occurrences</h2>
+
+            <!-- ADD OCCURRENCE -->
+            <h3 class="sub-title">Add Occurrence</h3>
+            <form method="POST" action="{{ url_for('admin_bp.add_occurrence') }}" class="admin-form">
+
+                <label>Event</label>
+                <select name="event_id" required>
+                    {% for e in events %}
+                        <option value="{{ e.event_id }}">{{ e.name }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Date</label>
+                <input type="date" name="occur_date" required>
+
+                <label>Start Time</label>
+                <input type="time" name="start_time">
+
+                <label>End Time</label>
+                <input type="time" name="end_time">
+
+                <label>Price Per Day</label>
+                <input type="number" step="0.01" name="price_per_day" required>
+
+                <label>Capacity Override (optional)</label>
+                <input type="number" name="capacity_override">
+
+                <button class="btn">Add Occurrence</button>
+            </form>
+
+            <!-- EXISTING OCCURRENCES -->
+            <h3 class="sub-title">Existing Occurrences</h3>
+
+            <div class="table-wrapper">
+                <table class="admin-table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Event</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+
+                    {% for o in occurrences %}
+                    <tr>
+                        <td>{{ o.occurrence_id }}</td>
+                        <td>{{ o.event_name }}</td>
+                        <td>{{ o.occur_date }}</td>
+                        <td>
+                        <a class="btn small" href="{{ url_for('admin_bp.edit_occurrence', occurrence_id=o.occurrence_id) }}">Edit</a>
+                        <a class="btn small danger"
+                           onclick="return confirm('Are you sure you want to delete this occurrence?');"
+                           href="{{ url_for('admin_bp.delete_occurrence', occurrence_id=o.occurrence_id) }}">
+                           Delete
+                        </a>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+<!-- CATEGORY MANAGEMENT -->
+<div class="collapse-header">Category Management <i>>></i></div>
+<div class="collapse-content">
+    <div class="admin-card dark-card">
+
+        <h2 class="section-title">Categories</h2>
+
+        <!-- ADD CATEGORY -->
+        <h3 class="sub-title">Add Category</h3>
+        <form method="POST" action="{{ url_for('admin_bp.add_category') }}" class="admin-form">
+            <label>Category Name</label>
+            <input type="text" name="name" required>
+            <button class="btn">Add Category</button>
+        </form>
+
+        <!-- EXISTING CATEGORIES -->
+        <h3 class="sub-title">Existing Categories</h3>
+
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <tr><th>ID</th><th>Name</th><th>Actions</th></tr>
+                {% for c in categories %}
+                <tr>
+                    <td>{{ c.category_id }}</td>
+                    <td>{{ c.name }}</td>
+                    <td>
+                        <a class="btn small" href="{{ url_for('admin_bp.edit_category', category_id=c.category_id) }}">Edit</a>
+                        <a class="btn small danger"
+                           onclick="return confirm('Are you sure you want to delete this category?');"
+                           href="{{ url_for('admin_bp.delete_category', category_id=c.category_id) }}">
+                           Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- LOCATION MANAGEMENT -->
+<div class="collapse-header">Location Management <i>>></i></div>
+<div class="collapse-content">
+    <div class="admin-card dark-card">
+
+        <h2 class="section-title">Locations</h2>
+
+        <!-- ADD LOCATION -->
+        <h3 class="sub-title">Add Location</h3>
+        <form method="POST" action="{{ url_for('admin_bp.add_location') }}" class="admin-form">
+            <label>Name</label>
+            <input type="text" name="name" required>
+
+            <label>Capacity</label>
+            <input type="number" name="capacity" required>
+
+            <label>Address</label>
+            <input type="text" name="address">
+
+            <button class="btn">Add Location</button>
+        </form>
+
+        <!-- EXISTING LOCATIONS -->
+        <h3 class="sub-title">Existing Locations</h3>
+
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <tr><th>ID</th><th>Name</th><th>Capacity</th><th>Actions</th></tr>
+                {% for l in locations %}
+                <tr>
+                    <td>{{ l.location_id }}</td>
+                    <td>{{ l.name }}</td>
+                    <td>{{ l.capacity }}</td>
+                    <td>
+                        <a class="btn small" href="{{ url_for('admin_bp.edit_location', location_id=l.location_id) }}">Edit</a>
+                        <a class="btn small danger"
+                           onclick="return confirm('Are you sure you want to delete this location?');"
+                           href="{{ url_for('admin_bp.delete_location', location_id=l.location_id) }}">
+                           Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- BOOKINGS -->
+<div class="collapse-header">Bookings <i>>></i></div>
+<div class="collapse-content">
+    <div class="admin-card dark-card">
+
+        <h2 class="section-title">All Bookings</h2>
+
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <tr>
+                    <th>ID</th><th>User</th><th>Event</th><th>Status</th><th>Total</th><th>Date</th>
+                </tr>
+                {% for b in bookings %}
+                <tr>
+                    <td>{{ b.booking_id }}</td>
+                    <td>{{ b.user_email }}</td>
+                    <td>{{ b.event_name }}</td>
+                    <td>{{ b.status }}</td>
+                    <td>£{{ b.total_price }}</td>
+                    <td>{{ b.booking_ts }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- WAITING LIST -->
+<div class="collapse-header">Waiting List <i>>></i></div>
+<div class="collapse-content">
+    <div class="admin-card dark-card">
+
+        <h2 class="section-title">Waiting List</h2>
+
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <tr><th>ID</th><th>User</th><th>Event Day</th><th>Status</th></tr>
+                {% for w in waiting %}
+                <tr>
+                    <td>{{ w.waiting_id }}</td>
+                    <td>{{ w.email }}</td>
+                    <td>{{ w.occur_date }}</td>
+                    <td>{{ w.status }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- SALES REPORT -->
+<div class="collapse-header">Sales Report <i>>></i></div>
+<div class="collapse-content">
+    <div class="admin-card dark-card">
+
+        <h2 class="section-title">Sales Report</h2>
+
+        <div class="sales-summary">
+            <div class="summary-box dark-card">
+                <h3>Total Revenue</h3>
+                <p>£{{ total_revenue }}</p>
+            </div>
+            <div class="summary-box dark-card">
+                <h3>Total Bookings</h3>
+                <p>{{ total_bookings }}</p>
+            </div>
+            <div class="summary-box dark-card">
+                <h3>Cancelled</h3>
+                <p>{{ cancelled }}</p>
+            </div>
+        </div>
+
+        <div class="summary-box dark-card">
+            <h3>Total Refunds</h3>
+            <p>£{{ total_refunds }}</p>
+        </div>
+
+        <h3 class="sub-title">Revenue Per Event</h3>
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <tr><th>Event</th><th>Revenue</th><th>Bookings</th></tr>
+                {% for r in revenue_per_event %}
+                <tr>
+                    <td>{{ r.event_name }}</td>
+                    <td>£{{ r.revenue }}</td>
+                    <td>{{ r.bookings }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <h3 class="sub-title">Monthly Sales</h3>
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <tr><th>Month</th><th>Revenue</th><th>Bookings</th></tr>
+                {% for m in monthly_sales %}
+                <tr>
+                    <td>{{ m.month }}</td>
+                    <td>£{{ m.revenue }}</td>
+                    <td>{{ m.bookings }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <h3 class="sub-title">Top Users</h3>
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <tr><th>User</th><th>Bookings</th><th>Revenue</th></tr>
+                {% for u in top_users %}
+                <tr>
+                    <td>{{ u.email }}</td>
+                    <td>{{ u.bookings }}</td>
+                    <td>£{{ u.revenue }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- REFUNDS -->
+<div class="collapse-header">Refunds <i>>></i></div>
+<div class="collapse-content">
+    <div class="admin-card dark-card">
+
+        <h2 class="section-title">Refund Transactions</h2>
+
+        <div class="table-wrapper">
+            <table class="admin-table">
+                <tr>
+                    <th>Refund ID</th>
+                    <th>Booking ID</th>
+                    <th>User</th>
+                    <th>Event</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+
+                {% for r in refunds %}
+                <tr>
+                    <td>{{ r.payment_id }}</td>
+                    <td>{{ r.booking_id }}</td>
+                    <td>{{ r.email }}</td>
+                    <td>{{ r.event_name }}</td>
+                    <td>£{{ "%.2f"|format(r.amount) }}</td>
+                    <td>{{ r.payment_ts }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+</div>
+<script>
+const headers = document.querySelectorAll(".collapse-header");
+
+headers.forEach(header => {
+    header.addEventListener("click", () => {
+
+        // Close all other sections
+        headers.forEach(h => {
+            if (h !== header) {
+                h.classList.remove("open");
+                h.nextElementSibling.style.display = "none";
+            }
+        });
+
+        // Toggle current section
+        header.classList.toggle("open");
+        const content = header.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+{% block content %}
+
+<div class="admin-dashboard-container">
+    <div class="admin-card dark-card">
+        <h2 class="section-title">Edit Location</h2>
+        <form method="POST" class="admin-form">
+            <label>Name</label>
+            <input type="text" name="name" value="{{ location.name }}" required>
+            <label>Capacity</label>
+            <input type="number" name="capacity" value="{{ location.capacity }}" required>
+            <label>Address</label>
+            <input type="text" name="address" value="{{ location.address }}">
+            <button class="btn">Save Changes</button>
+            <a href="{{ url_for('admin_bp.dashboard') }}" class="btn danger">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

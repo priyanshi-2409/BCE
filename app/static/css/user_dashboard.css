@@ -1,0 +1,177 @@
+/*Student_ID_25017334_Name_Priyanshi_Jadeja*/
+
+/* USER DASHBOARD */
+
+/* Card + text colours */
+
+.card,
+.card p,
+.card label,
+.card h2,
+.card h3,
+.card h4,
+.card span {
+    color: #ffffff;
+}
+
+/* Card layout */
+
+.card {
+    width: 90%;
+    margin: 25px auto;
+    background: #1a1a1a; /* unified dark theme */
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+}
+.card h2 {
+    color: #ff9800;
+    margin-top: 0;
+}
+
+/* Booking card */
+
+.booking-card {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #1a1a1a; /* unified */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255,255,255,0.08);
+}
+
+/* Buttons */
+
+.btn {
+    background: #ff9800;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    display: inline-block;
+}
+.btn:hover {
+    background: #e68a00;
+}
+.btn.cancel {
+    background: #cc3333;
+}
+.btn.cancel:hover {
+    background: #b32b2b;
+}
+
+/* Booking actions */
+
+.dashboard-booking-actions {
+    margin-top: 15px;
+}
+.dashboard-booking-actions a {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* Table styling */
+
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: #222; 
+    color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.details-table th {
+    background: #2a2a2a;
+    color: #ff9800;
+    padding: 12px;
+    text-align: left;
+}
+.details-table td {
+    padding: 12px;
+    border-bottom: 1px solid #333;
+}
+.details-table tr:nth-child(even) {
+    background: #1f1f1f;
+}
+.details-table tr:hover {
+    background: #333;
+}
+
+/* Form fields */
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px 0;
+    border-radius: 6px;
+    border: 1px solid #555;
+    background: #2a2a2a;
+    color: white;
+}
+
+/* Hidden booking form */
+
+.booking-form-hidden {
+    display: none;
+    margin-top: 20px;
+}
+
+/*  RESPONSIVE DESIGN */
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .card {
+        padding: 18px;
+        width: 95%;
+    }
+
+    .details-table th,
+    .details-table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .dashboard-booking-actions a {
+        width: 100%;
+        text-align: center;
+        margin-right: 0;
+    }
+}
+
+/* Tablet */
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .card {
+        width: 95%;
+    }
+
+    .booking-card {
+        padding: 18px;
+    }
+}
+
+/* Desktop */
+
+@media (min-width: 1025px) {
+    .card {
+        width: 80%;
+    }
+}
+.student-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    color: #fff;
+}
+
+.student-check input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #ff9800; /* your orange theme */
+}

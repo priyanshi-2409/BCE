@@ -1,0 +1,145 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Receipt</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            margin: 0;
+            padding: 30px;
+        }
+        .receipt-container {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+        }
+        h1 {
+            color: #ff9800;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #ffa733;
+            margin-top: 25px;
+        }
+        .receipt-header p {
+            margin: 5px 0;
+            color: #fff;
+        }
+
+        /* Table */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: #222;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th {
+            background: #2a2a2a;
+            padding: 12px;
+            color: #ff9800;
+            text-align: left;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #333;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background: #1f1f1f;
+        }
+
+        /* Totals */
+
+        .totals-box {
+            margin-top: 25px;
+            background: #222;
+            padding: 20px;
+            border-radius: 8px;
+            color: #fff;
+        }
+        .final-total {
+            font-size: 20px;
+            color: #ff9800;
+        }
+        .footer-note {
+            margin-top: 30px;
+            font-size: 12px;
+            text-align: center;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<div class="receipt-container">
+
+    <h1>Booking Receipt</h1>
+
+    <div class="receipt-header">
+        <p><strong>Booking ID:</strong> {{ booking.booking_id }}</p>
+        <p><strong>Booked On:</strong> {{ booking.booking_ts }}</p>
+        <p><strong>Email:</strong> {{ booking.email }}</p>
+        <p><strong>Status:</strong> {{ booking.status }}</p>
+        <p><strong>Event:</strong> {{ booking.event_name }}</p>
+        <p><strong>Location:</strong> {{ booking.location_name }}</p>
+    </div>
+
+    <h2>Booked Days</h2>
+
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Line Total</th>
+        </tr>
+
+        {% for line in lines %}
+        <tr>
+            <td>{{ line.occur_date }}</td>
+            <td>{{ line.start_time or "-" }}</td>
+            <td>{{ line.end_time or "-" }}</td>
+            <td>{{ line.qty }}</td>
+            <td>£{{ "%.2f"|format(line.unit_price) }}</td>
+            <td>£{{ "%.2f"|format(line.line_total) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Totals</h2>
+
+    <table>
+        <tr>
+            <th>Total Before Discounts</th>
+            <td>£{{ "%.2f"|format(booking.total_before_discounts) }}</td>
+        </tr>
+        <tr>
+            <th>Discount Applied</th>
+            <td>- £{{ "%.2f"|format(booking.total_discount) }}</td>
+        </tr>
+        <tr>
+            <th>Final Paid</th>
+            <td class="final-total">£{{ "%.2f"|format(booking.total_after_discounts) }}</td>
+        </tr>
+    </table>
+
+    <p class="footer-note">Generated automatically by Bristol Community Events</p>
+
+</div>
+</body>
+</html>

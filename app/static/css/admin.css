@@ -1,0 +1,252 @@
+/*Student_ID_25017334_Name_Priyanshi_Jadeja*/
+
+/* ADMIN DASHBOARD */
+
+body.admin-dashboard-page {
+    background: #ffffff;
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    padding: 0px;
+    margin: 0;
+}
+.admin-dashboard-container {
+    max-width:1100px;
+    margin: 40px auto;
+}
+.admin-dashboard-container .dark-card {
+    width: 100%;
+}
+
+/* HEADER */
+
+.admin-header {
+    width: 100%;
+    background: #292929; /* solid dark header */
+    padding: 0px 0px;
+    margin: 0;
+    border-radius: 0;
+    color: #fff;
+}
+.admin-header h1 {
+    margin: 0;
+    font-size: 32px;
+    color: #ff9800;
+}
+.admin-header p {
+    margin-top: 10px;
+    color: #cccccc;
+}
+
+/* CARDS */
+
+.dark-card,
+.admin-card {
+    background: #292929;
+    padding: 15px;
+    margin-bottom: 35px;
+    border-radius: 10px;
+    border: 1px solid #2a2a2a;
+    box-shadow: 0 0 15px rgba(255,255,255,0.08);
+}
+.admin-card h2,
+.section-title {
+    color: #ff9800;
+    margin-bottom: 15px;
+}
+.admin-card h3,
+.sub-title {
+    margin-top: 25px;
+    color: #ffa733;
+}
+
+/* FORMS */
+
+.admin-form label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    color: #dddddd;
+}
+.admin-form input,
+.admin-form select,
+.admin-form textarea {
+    width: 100%;
+    padding: 10px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #ffffff;
+}
+.admin-form textarea {
+    height: 90px;
+    resize: vertical;
+}
+
+/* BUTTONS */
+
+.btn {
+    display: inline-block;
+    background: #ff9800;
+    color: #000;
+    padding: 10px 18px;
+    border-radius: 6px;
+    margin-top: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.2s;
+    border: none;
+    cursor: pointer;
+}
+.btn:hover {
+    background: #ffa733;
+}
+.btn.small {
+    padding: 6px 12px;
+    font-size: 14px;
+}
+.btn.danger {
+    background: #d9534f;
+    color: #fff;
+}
+.btn.danger:hover {
+    background: #ff6b66;
+}
+
+/* TABLES */
+
+.table-wrapper {
+    overflow-x: auto;
+    margin-top: 15px;
+}
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #222;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.admin-table th {
+    background: #2a2a2a;
+    padding: 12px;
+    text-align: left;
+    color: #ff9800;
+    border-bottom: 2px solid #444;
+}
+.admin-table td {
+    padding: 12px;
+    border-bottom: 1px solid #333;
+    color: #e0e0e0;
+}
+.admin-table tr:nth-child(even) {
+    background: #1f1f1f;
+}
+.admin-table tr:hover {
+    background: #333;
+}
+
+/* SALES SUMMARY BOXES */
+
+.sales-summary {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+.summary-box {
+    flex: 1;
+    min-width: 220px;
+    background: #222;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #ff9800;
+    box-shadow: 0 0 10px rgba(255,255,255,0.05);
+}
+.summary-box h3 {
+    margin: 0;
+    color: #ffa733;
+}
+.summary-box p {
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/*COLLAPSIBLE SECTIONS */
+
+.collapse-header {
+    cursor: pointer;
+    padding: 14px 18px;
+    background: #1e1e1e;
+    color: #fff;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 1px solid #333;
+    transition: 0.2s;
+}
+.collapse-header:hover {
+    background: #292929;
+}
+.collapse-header.open {
+    background: #444;
+}
+.collapse-content {
+    padding: 15px 0 25px 0;
+    display: none;
+}
+
+/* RESPONSIVE DESIGN*/
+
+/* Tablet */
+@media (max-width: 992px) {
+    .admin-dashboard-container {
+        max-width: 95%;
+    }
+
+    .admin-card {
+        padding: 20px;
+    }
+
+    .admin-header h1 {
+        font-size: 28px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .sales-summary {
+        flex-direction: column;
+    }
+
+    .admin-card {
+        padding: 18px;
+    }
+
+    .admin-header h1 {
+        font-size: 24px;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .admin-header {
+        padding: 18px;
+    }
+
+    .admin-header h1 {
+        font-size: 20px;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}

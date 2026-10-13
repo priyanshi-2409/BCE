@@ -1,0 +1,53 @@
+/*Student_ID_25017334_Name_Priyanshi_Jadeja*/
+
+/* ABOUT_US PAGE */
+
+.about-us {
+  background: whitesmoke;
+  color: #0a0a0a;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+.about-container h1 {
+  font-size: 36px;
+  color: #ff9800;
+  margin-bottom: 10px;
+}
+.about-container .intro {
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 20px;
+  color: #101010;
+}
+.about-container h2 {
+  margin-top: 30px;
+  font-size: 24px;
+  color: #ff9800;
+}
+.about-container p,
+.about-container ul {
+  font-size: 16px;
+  line-height: 1.6;
+}
+.about-container ul {
+  padding-left: 20px;
+}
+.about-container hr {
+  margin: 40px 0;
+  border: none;
+  border-top: 1px solid #444;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .about-container h1 { font-size: 28px; }
+  .about-container h2 { font-size: 20px; }
+  .about-container p,
+  .about-container ul { font-size: 15px; }
+}

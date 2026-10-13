@@ -1,0 +1,68 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+{% block title %}Select Days{% endblock %}
+{% block body_class %}booking-page{% endblock %}
+
+{% block content %}
+
+<div class="booking-container dark-card">
+    <h1 class="page-title">Select Days for {{ event.name }}</h1>
+
+    {% if error %}
+        <div class="error-box">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('booking_bp.select_days', event_id=event.event_id) }}" class="days-form">
+
+        <div class="table-wrapper">
+            <table class="days-table">
+                <tr>
+                    <th>Date</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Price</th>
+                    <th>Remaining</th>
+                    <th>Select Qty</th>
+                </tr>
+
+                {% for occ in occurrences %}
+                <tr>
+                    <td>{{ occ.occur_date }}</td>
+                    <td>{{ occ.start_time or "-" }}</td>
+                    <td>{{ occ.end_time or "-" }}</td>
+                    <td>£{{ "%.2f"|format(occ.price_per_day) }}</td>
+                    <td>{{ occ.remaining_tickets }}</td>
+                    <td>
+                        {% if occ.remaining_tickets > 0 %}
+                            <input type="number"
+                                   name="qty_{{ occ.occurrence_id }}"
+                                   min="0"
+                                   max="{{ occ.remaining_tickets }}"
+                                   value="0"
+                                   class="qty-input">
+                        {% else %}
+                            <span class="sold-out">Sold Out</span>
+                            <a href="{{ url_for('booking_bp.join_waiting_list', occurrence_id=occ.occurrence_id) }}"
+                               class="btn waitlist-btn"
+                               style="margin-left: 10px;">
+                                Join Waiting List
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="student-discount-box" style="margin-top: 20px;">
+            <label style="color: #ff9800; font-weight: bold;">
+                <input type="checkbox" name="is_student">
+                I am a student (10% discount)
+            </label>
+        </div>
+
+        <button class="btn confirm-btn">Continue</button>
+    </form>   
+</div>        
+{% endblock %}

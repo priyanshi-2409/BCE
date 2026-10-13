@@ -1,0 +1,54 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/events.css') }}">
+{% endblock %}
+
+{% block title %}Events{% endblock %}
+{% block body_class %}events-page{% endblock %}
+
+{% block content %}
+
+<h1 class="page-title" style="text-align:center; color:#333;">
+    Discover what's happening around Bristol
+</h1>
+
+<div class="table-wrapper">
+<table class="event-table">
+  <thead>
+    <tr>
+      <th>Venue</th>
+      <th>Capacity</th>
+      <th>Event</th>
+      <th>Price Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for e in events %}
+    <tr>
+      <td>{{ e.venue_name }}</td>
+      <td>{{ e.capacity }}</td>
+      <td>{{ e.name }}</td>
+
+      <td>
+          {% if e.base_total_price and e.base_total_price > 0 %}
+              £{{ e.base_total_price }}
+          {% else %}
+              Free
+          {% endif %}
+      </td>
+
+      <td>
+        <a href="{{ url_for('events_bp.event_details', event_id=e.event_id) }}" style="color:#fff;">
+          View details
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

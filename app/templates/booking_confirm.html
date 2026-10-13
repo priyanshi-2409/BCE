@@ -1,0 +1,45 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+{% block title %}Confirm Booking{% endblock %}
+{% block body_class %}booking-page{% endblock %}
+
+{% block content %}
+
+<div class="confirm-container dark-card">
+    <h1 class="page-title">Confirm Your Booking</h1>
+    <h2 class="event-name">{{ event.name }}</h2>
+    <div class="table-wrapper">
+        <table class="confirm-table">
+            <tr>
+                <th>Date</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Qty</th>
+                <th>Unit Price</th>
+                <th>Subtotal</th>
+            </tr>
+
+            {% for line in lines %}
+            <tr>
+                <td>{{ line.occur_date }}</td>
+                <td>{{ line.start_time or "-" }}</td>
+                <td>{{ line.end_time or "-" }}</td>
+                <td>{{ line.qty }}</td>
+                <td>£{{ "%.2f"|format(line.unit_price) }}</td>
+                <td>£{{ "%.2f"|format(line.line_total) }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="confirm-summary">
+        <p>Subtotal: <strong>£{{ "%.2f"|format(subtotal) }}</strong></p>
+        <p>Discount: <strong>- £{{ "%.2f"|format(discount) }}</strong></p>
+        <p class="final-total">Final Total: <strong>£{{ "%.2f"|format(final_total) }}</strong></p>
+    </div>
+
+    <form method="GET" action="{{ url_for('booking_bp.booking_complete') }}">
+        <button class="btn confirm-btn">Confirm Booking</button>
+    </form>
+</div>
+{% endblock %}

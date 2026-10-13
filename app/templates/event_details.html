@@ -1,0 +1,104 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/event_details.css') }}">
+{% endblock %}
+
+{% block title %}Event Details{% endblock %}
+{% block body_class %}event-details-page{% endblock %}
+
+{% block content %}
+
+<div class="details-container dark-card">
+
+  <!-- HEADER SECTION -->
+  <div class="event-header">
+
+    <!-- EVENT IMAGE -->
+    <div class="event-image">
+      <img src="{{ url_for('static', filename='images/' ~ (event.image_url if event.image_url else 'default_event.png')) }}"
+      alt="{{ event.name }}">
+    </div>
+
+    <!-- EVENT INFO -->
+    <div class="event-info">
+      <h1 class="event-title">{{ event.name }}</h1>
+
+      <p><strong>Venue:</strong> {{ event.location_name }}</p>
+      <p><strong>Capacity:</strong> {{ event.location_capacity }}</p>
+
+      <p><strong>Categories:</strong>
+        {% for c in categories %}
+          {{ c }}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+      </p>
+
+      <p><strong>Base Price:</strong> 
+        {% if event.base_total_price == 0 %}
+          Free
+        {% else %}
+          £{{ event.base_total_price }}
+        {% endif %}
+      </p>
+
+      <p><strong>Start Date:</strong> {{ event.start_date }}</p>
+      <p><strong>End Date:</strong> {{ event.end_date }}</p>
+
+      <p><strong>Conditions:</strong> {{ event.conditions or "None" }}</p>
+      {% if not session.get('user_id') %}
+          <a class="btn book-btn"
+             href="{{ url_for('auth_bp.login', next=url_for('booking_bp.select_days', event_id=event.event_id)) }}">
+             Book Now
+          </a>
+      {% else %}
+          <a class="btn book-btn"
+             href="{{ url_for('booking_bp.select_days', event_id=event.event_id) }}">
+             Book Now
+          </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- DESCRIPTION -->
+  <h2 class="section-title">Event Description</h2>
+  <p class="event-description">{{ event.description }}</p>
+
+  <!-- MULTI-DAY SCHEDULE -->
+  <h2 class="section-title">Event Schedule (Multi-Day)</h2>
+  <div class="table-wrapper">
+  <table class="details-table">
+    <tr>
+      <th>Date</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Price Per Day</th>
+      <th>Remaining Tickets</th>
+    </tr>
+
+    {% for o in occurrences %}
+    <tr>
+      <td>{{ o.occur_date }}</td>
+      <td>{{ o.start_time or "-" }}</td>
+      <td>{{ o.end_time or "-" }}</td>
+      <td>
+        {% if o.price_per_day == 0 %}
+          Free
+        {% else %}
+          £{{ o.price_per_day }}
+        {% endif %}
+      </td>
+      <td>
+        {% if o.remaining_tickets > 0 %}
+          {{ o.remaining_tickets }}
+        {% else %}
+          <span class="full">Full</span>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  </div>
+</div>
+{% endblock %}

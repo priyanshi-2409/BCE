@@ -1,0 +1,23 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+{% block content %}
+
+<h1>{{ event.name }}</h1>
+
+<p><strong>Venue:</strong> {{ event.location_name }}</p>
+<p><strong>Description:</strong> {{ event.description }}</p>
+<p><strong>Conditions:</strong> {{ event.conditions }}</p>
+<p><strong>Event Dates:</strong> {{ event.start_date }} → {{ event.end_date }}</p>
+<p><strong>Base Price:</strong> £{{ event.base_total_price }}</p>
+
+<hr>
+
+<h2>Select a Day to Book</h2>
+
+<p>This event has multiple days. Please choose a date on the next page.</p>
+
+<a class="btn" href="{{ url_for('booking_bp.select_days', event_id=event.event_id) }}">
+    Continue to Booking
+</a>
+{% endblock %}

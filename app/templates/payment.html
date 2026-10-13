@@ -1,0 +1,58 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+{% block title %}Payment{% endblock %}
+{% block body_class %}payment-page{% endblock %}
+
+{% block content %}
+
+<div class="payment-container dark-card">
+    <h1 class="page-title">Payment</h1>
+    <p>Total Amount: <strong>£{{ amount }}</strong></p>
+
+    <form action="{{ url_for('booking_bp.payment_process', booking_id=booking_id) }}" method="POST">
+
+        <div class="payment-field">
+            <label>Cardholder Name</label>
+            <input type="text" name="card_name" required>
+        </div>
+
+        <div class="payment-field">
+            <label>Card Number</label>
+            <input type="text" name="card_number" required>
+        </div>
+
+        <div class="payment-field">
+            <label>Expiry Date (MM/YY)</label>
+            <input type="text" name="expiry" required>
+        </div>
+
+        <div class="payment-field">
+            <label>CVV</label>
+            <input type="password" name="cvv" required>
+        </div>
+
+        <div class="payment-field">
+            <label>Billing Email</label>
+            <input type="email" name="billing_email" required>
+        </div>
+
+        <button class="btn pay-btn">Pay Now</button>
+    </form>
+</div>
+{% endblock %}
+{% block extra_css %}
+<style>
+    .payment-field {
+    margin-bottom: 15px;
+}
+.payment-field input {
+    width: 100%;
+    padding: 10px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: white;
+}
+</style>
+{% endblock %}

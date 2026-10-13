@@ -1,0 +1,46 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+{% endblock %}
+
+{% block title %}Register{% endblock %}
+{% block body_class %}register-page{% endblock %}
+
+{% block content %}
+
+<div class="register-wrapper">
+
+  <form method="POST" action="{{ url_for('auth_bp.register') }}" class="register-form">
+
+    <h2>Register</h2>
+
+    <div class="register-input-field">
+        <input type="text" name="first_name" required>
+        <label>Enter your First name</label>
+    </div>
+
+    <div class="register-input-field">
+        <input type="text" name="last_name" required>
+        <label>Enter your Last name</label>
+    </div>
+
+    <div class="register-input-field">
+        <input type="email" name="email" required>
+        <label>Enter your e-mail</label>
+    </div>
+
+    <div class="register-input-field">
+        <input type="password" name="password" required>
+        <label>Create your password</label>
+    </div>
+
+    <button type="submit" class="register-btn">Register</button>
+
+    <div class="register-login">
+        <p>Already have an account? <a href="{{ url_for('auth_bp.login') }}">Log In</a></p>
+    </div>
+  </form>
+</div>
+{% endblock %}

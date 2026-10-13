@@ -1,0 +1,17 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+{% block title %}Waiting List{% endblock %}
+
+{% block content %}
+
+<h1>You've been added to the waiting list</h1>
+
+<p>
+    You will be notified if a spot becomes available for this event day.
+</p>
+
+<a href="{{ url_for('booking_bp.dashboard') }}" class="btn">
+    Go to Dashboard
+</a>
+{% endblock %}

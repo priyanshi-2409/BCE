@@ -1,0 +1,17 @@
+<!--Student_ID_25017334_Name_Priyanshi_Jadeja-->
+
+{% extends "base.html" %}
+{% block content %}
+
+<div class="admin-dashboard-container">
+    <div class="admin-card dark-card">
+        <h2 class="section-title">Edit Category</h2>
+        <form method="POST" class="admin-form">
+            <label>Category Name</label>
+            <input type="text" name="name" value="{{ category.name }}" required>
+            <button class="btn">Save Changes</button>
+            <a href="{{ url_for('admin_bp.dashboard') }}" class="btn danger">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
